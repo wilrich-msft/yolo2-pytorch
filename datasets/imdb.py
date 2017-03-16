@@ -43,6 +43,8 @@ class ImageDataset(object):
         i = 0
         while i < self.batch_size:
             try:
+                if self.gen is None:
+                    raise StopIteration
                 images, gt_boxes, classes, dontcare, origin_im = self.gen.next()
                 batch['images'].append(images)
                 batch['gt_boxes'].append(gt_boxes)
